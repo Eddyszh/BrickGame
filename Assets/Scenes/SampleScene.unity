@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mines: {fileID: 1011177437924408, guid: 12bcca75586a6a5468cbac480701ecad, type: 2}
+  value: 000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!4 &165769517
 Transform:
   m_ObjectHideFlags: 0

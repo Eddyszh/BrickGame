@@ -5,14 +5,22 @@ using UnityEngine;
 public class SpawnEnemies : GridUpdateTool
 {
     public GameObject mines;
-    int[] value = new int[10];
+    public int[] value = new int[9];
+    int randomPos;
     bool isFree;
-    int index;
+    int index = 0;
     int pos;
+    int randonMines;
 
-	void Start ()
+
+    void Start ()
     {
-        StartCoroutine(SpawnNewRow());
+        for (int i = 0; i < value.Length; i++)
+        {
+            value[i] = 11;
+        }
+        RandomValue();
+        //StartCoroutine(SpawnNewRow());
 	}
 	
 	void Update ()
@@ -22,25 +30,26 @@ public class SpawnEnemies : GridUpdateTool
 
     IEnumerator SpawnNewRow()
     {
-        yield return new WaitForSeconds(5);
-        int randonMines = Random.Range(3, 8);
+        randonMines = Random.Range(3, 8);
         for (int x = 0; x < randonMines; x++)
         {
             GameObject go = Instantiate(mines) as GameObject;
-            Vector2 position = new Vector2(RandomPos(randonMines), 15);
+            Vector2 position = new Vector2(value[x], 15);
             go.transform.position = position;
-            Grid2D.grid[RandomPos(randonMines), 15] = go.transform;
+            Grid2D.grid[value[x], 15] = go.transform;
         }
+        yield return new WaitForSeconds(5);
+        Grid2D.Down();
+        RandomValue();
     }
 
-    int RandomPos(int randomMines)
+    void RandomValue()
     {
         do
         {
             isFree = true;
-            index = 0;
-            int randomPos = Random.Range(0, 10);
-            for (int i = 0; i < randomMines; i++)
+            randomPos = Random.Range(0, 10);
+            for (int i = 0; i < value.Length; i++)
             {
                 if (randomPos == value[i])
                 {
@@ -52,10 +61,10 @@ public class SpawnEnemies : GridUpdateTool
             if (isFree)
             {
                 value[index] = randomPos;
-                pos = value[index];
                 index++;
             }
-            return pos;
-        } while (index < randomMines);
+        } while (index < value.Length);
+        StartCoroutine(SpawnNewRow());
+        index = 0;
     }
 }

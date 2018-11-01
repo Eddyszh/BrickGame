@@ -7,22 +7,12 @@ public class Mine : GridUpdateTool
     
 	void Start ()
     {
-        StartCoroutine(Down());
 	}
 	
 	void Update ()
     {
 		
 	}
-
-    IEnumerator Down()
-    {
-        for (int y = 0; y < 14; y++)
-        {
-            Grid2D.RowDownAll(y + 1);
-        }
-        yield return new WaitForSeconds(5f);
-    }
 
     public override bool isValidPosition()
     {

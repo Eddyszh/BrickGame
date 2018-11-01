@@ -84,4 +84,15 @@ public class Grid2D : MonoBehaviour
         for (int i = y; i < height; ++i)
 			RowDown(i);
     }
+
+    public static void Down()
+    {
+        for (int y = 0; y < 15; y++)
+        {
+            if (!isFull(y))
+            {
+                RowDownAll(y + 1);
+            }
+        }
+    }
 }
