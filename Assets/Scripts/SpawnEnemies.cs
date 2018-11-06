@@ -6,12 +6,12 @@ public class SpawnEnemies : GridUpdateTool
 {
     public GameObject mines;
     public int[] value = new int[9];
-    int randomPos;
     bool isFree;
+    bool isGettingDown = false;
+    int randomPos;
     int index = 0;
     int pos;
     int randonMines;
-
 
     void Start ()
     {
@@ -20,12 +20,6 @@ public class SpawnEnemies : GridUpdateTool
             value[i] = 11;
         }
         RandomValue();
-        //StartCoroutine(SpawnNewRow());
-	}
-	
-	void Update ()
-    {
-		
 	}
 
     IEnumerator SpawnNewRow()
@@ -35,11 +29,13 @@ public class SpawnEnemies : GridUpdateTool
         {
             GameObject go = Instantiate(mines) as GameObject;
             Vector2 position = new Vector2(value[x], 15);
+            //ObjectPool.Instance.SpawnMine(position, value, x, 15);
             go.transform.position = position;
             Grid2D.grid[value[x], 15] = go.transform;
         }
         yield return new WaitForSeconds(5);
-        Grid2D.Down();
+        isGettingDown = true;
+        Down();
         RandomValue();
     }
 
@@ -66,5 +62,18 @@ public class SpawnEnemies : GridUpdateTool
         } while (index < value.Length);
         StartCoroutine(SpawnNewRow());
         index = 0;
+    }
+
+    void Down()
+    {
+        for (int y = 0; y < 16; y++)
+        {
+            if (isGettingDown)
+            {
+                Grid2D.RowDownAll(y + 1);
+                y--;
+                isGettingDown = false;
+            }
+        }
     }
 }

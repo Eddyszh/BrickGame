@@ -6,7 +6,7 @@ public class Bullet : GridUpdateTool
 {
     public int speed;
 
-	void Update ()
+    void Update ()
     {
         transform.position += transform.TransformDirection(new Vector3(0, 1, 0) * speed);
         if (isValidPosition()) GridUpdate();

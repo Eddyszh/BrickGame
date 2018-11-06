@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Mine : GridUpdateTool
 {
-    
-	void Start ()
+    void Start ()
     {
 	}
 	

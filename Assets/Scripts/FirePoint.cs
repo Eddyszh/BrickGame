@@ -14,6 +14,7 @@ public class FirePoint : MonoBehaviour
 
     void Fire()
     {
+        //ObjectPool.Instance.SpawnBullet(transform);
         GameObject go = Instantiate(bullet,transform.position, Quaternion.identity) as GameObject;
     }
 }

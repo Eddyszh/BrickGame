@@ -20,8 +20,11 @@ public class Grid2D : MonoBehaviour
 
     public static void Delete(int y)
     {
-        for (int x = 0; x < width; ++x) {
+        for (int x = 0; x < width; ++x)
+        {
             Destroy(grid[x, y].gameObject);
+            //ObjectPool.Instance.List.Push(grid[x, y].gameObject);
+            //grid[x, y].gameObject.SetActive(false);
             grid[x, y] = null;
         }
     }
@@ -30,7 +33,7 @@ public class Grid2D : MonoBehaviour
     {
         for (int x = 0; x < width; ++x)
 			if (grid[x, y] == null)
-            return false;
+                return false;
         return true;
     }
 
@@ -43,6 +46,7 @@ public class Grid2D : MonoBehaviour
                 Delete(y);
                 RowUpAll(y - 1);
                 ++y;
+                Score.isDetroying = true;
             }
         }
     }
@@ -83,16 +87,5 @@ public class Grid2D : MonoBehaviour
     {
         for (int i = y; i < height; ++i)
 			RowDown(i);
-    }
-
-    public static void Down()
-    {
-        for (int y = 0; y < 15; y++)
-        {
-            if (!isFull(y))
-            {
-                RowDownAll(y + 1);
-            }
-        }
     }
 }
