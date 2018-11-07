@@ -23,7 +23,10 @@ public class Score : MonoBehaviour
     public static int ScoreUpdate()
     {
         if(isDetroying)
+        {
+            isDetroying = false;
             return score += 10;
+        }
         return score;
     }
 }
