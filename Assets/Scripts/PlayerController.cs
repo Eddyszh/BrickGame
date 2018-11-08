@@ -24,5 +24,5 @@ public class PlayerController : GridUpdateTool
             if (isValidPosition()) GridUpdate();
             else transform.position += new Vector3(-1, 0, 0);
         }
-    }
+    }    
 }

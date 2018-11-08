@@ -12,6 +12,7 @@ public class SpawnEnemies : GridUpdateTool
     int index = 0;
     int pos;
     int randonMines;
+    int downSpeed = 5;
 
     void Start ()
     {
@@ -24,6 +25,9 @@ public class SpawnEnemies : GridUpdateTool
 
     IEnumerator SpawnNewRow()
     {
+        if (Score.score >= 300 && Score.score < 500) downSpeed = 4;
+        if (Score.score >= 500 && Score.score < 700) downSpeed = 3;
+        if (Score.score >= 700) downSpeed = 2;
         randonMines = Random.Range(3, 8);
         for (int x = 0; x < randonMines; x++)
         {
@@ -33,7 +37,7 @@ public class SpawnEnemies : GridUpdateTool
             go.transform.position = position;
             Grid2D.grid[value[x], 15] = go.transform;
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(downSpeed);
         isGettingDown = true;
         Down();
         RandomValue();
@@ -73,7 +77,7 @@ public class SpawnEnemies : GridUpdateTool
                 Grid2D.RowDownAll(y + 1);
                 y--;
                 isGettingDown = false;
-            }
+            }            
         }
     }
 }
