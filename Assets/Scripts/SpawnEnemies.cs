@@ -4,42 +4,34 @@ using UnityEngine;
 
 public class SpawnEnemies : GridUpdateTool
 {
-    public GameObject mines;
-    public int[] value = new int[9];
+    public GameObject enemy;
+    public int[] value = new int[3];
     bool isFree;
-    bool isGettingDown = false;
     int randomPos;
-    int index = 0;
-    int pos;
-    int randonMines;
-    int downSpeed = 5;
-
-    void Start ()
+    int randomEnemies;
+    int index;
+	// Use this for initialization
+	void Start ()
     {
-        for (int i = 0; i < value.Length; i++)
-        {
-            value[i] = 11;
-        }
         RandomValue();
 	}
-
-    IEnumerator SpawnNewRow()
+	
+	// Update is called once per frame
+	void Update ()
     {
-        if (Score.score >= 300 && Score.score < 500) downSpeed = 4;
-        if (Score.score >= 500 && Score.score < 700) downSpeed = 3;
-        if (Score.score >= 700) downSpeed = 2;
-        randonMines = Random.Range(3, 8);
-        for (int x = 0; x < randonMines; x++)
+	}
+
+    IEnumerator Spawn()
+    {
+        randomEnemies = Random.Range(1, 4);
+        for (int x = 0; x < randomEnemies; x++)
         {
-            GameObject go = Instantiate(mines) as GameObject;
+            GameObject go = Instantiate(enemy) as GameObject;
             Vector2 position = new Vector2(value[x], 15);
-            //ObjectPool.Instance.SpawnMine(position, value, x, 15);
             go.transform.position = position;
             Grid2D.grid[value[x], 15] = go.transform;
         }
-        yield return new WaitForSeconds(downSpeed);
-        isGettingDown = true;
-        Down();
+        yield return new WaitForSeconds(1);
         RandomValue();
     }
 
@@ -48,7 +40,7 @@ public class SpawnEnemies : GridUpdateTool
         do
         {
             isFree = true;
-            randomPos = Random.Range(0, 10);
+            randomPos = Random.Range(3, 7);
             for (int i = 0; i < value.Length; i++)
             {
                 if (randomPos == value[i])
@@ -64,20 +56,7 @@ public class SpawnEnemies : GridUpdateTool
                 index++;
             }
         } while (index < value.Length);
-        StartCoroutine(SpawnNewRow());
+        StartCoroutine(Spawn());
         index = 0;
-    }
-
-    void Down()
-    {
-        for (int y = 0; y < 16; y++)
-        {
-            if (isGettingDown)
-            {
-                Grid2D.RowDownAll(y + 1);
-                y--;
-                isGettingDown = false;
-            }            
-        }
     }
 }

@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mine : GridUpdateTool
+public class EnemyShip : GridUpdateTool
 {
-    void Start ()
+    public int speed;
+
+    void Update()
     {
-	}
-	
-	void Update ()
-    {
-		
-	}
+        transform.position += transform.TransformDirection(0, -speed * Time.deltaTime, 0);
+
+        //if(transform.position < ) Destroy(gameObject);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.GetComponent<PlayerController>())
+        if (collision.collider.GetComponent<PlayerController>()) 
         {
-            Debug.Log("Murió");
+            Debug.Log("muere");
         }
     }
 

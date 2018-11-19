@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4590024564518632}
   - component: {fileID: 212656502093402484}
-  - component: {fileID: 114249111021862018}
-  - component: {fileID: 61581613464749624}
+  - component: {fileID: 61382145138813866}
+  - component: {fileID: 114369290207708604}
   m_Layer: 0
-  m_Name: Mine
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61581613464749624
+--- !u!61 &61382145138813866
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114249111021862018
+--- !u!114 &114369290207708604
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,9 +75,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1011177437924408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4abdcc1e555b94a47a24b77c66838340, type: 3}
+  m_Script: {fileID: 11500000, guid: 1beedfbe0e416fc44a2ac842f1984e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
 --- !u!212 &212656502093402484
 SpriteRenderer:
   m_ObjectHideFlags: 1
