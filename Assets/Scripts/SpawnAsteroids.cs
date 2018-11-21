@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemies : GridUpdateTool
+public class SpawnAsteroids : GridUpdateTool
 {
-    public GameObject enemy;
+    public GameObject asteroid;
     public int[] value = new int[3];
     bool isFree;
     int randomPos;
-    int randomEnemies;
+    int randomAsteroids;
     int index;
 	// Use this for initialization
 	void Start ()
@@ -23,10 +23,10 @@ public class SpawnEnemies : GridUpdateTool
 
     IEnumerator Spawn()
     {
-        randomEnemies = Random.Range(1, 4);
-        for (int x = 0; x < randomEnemies; x++)
+        randomAsteroids = Random.Range(1, 4);
+        for (int x = 0; x < randomAsteroids; x++)
         {
-            GameObject go = Instantiate(enemy) as GameObject;
+            GameObject go = Instantiate(asteroid) as GameObject;
             Vector2 position = new Vector2(value[x], 15);
             go.transform.position = position;
             Grid2D.grid[value[x], 15] = go.transform;

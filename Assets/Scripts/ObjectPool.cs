@@ -100,7 +100,7 @@ public class ObjectPool : MonoBehaviour
     public void SpawnMine(Vector2 t, int[] value, int x, int y)
     {
         if (list.Count == 0) CreateMines(4);
-        GameObject go = list.Pop();
+        GameObject go = mineList.Pop();
         go.SetActive(true);
         go.transform.position = t;
         Grid2D.grid[value[x], y] = go.transform;
@@ -111,7 +111,7 @@ public class ObjectPool : MonoBehaviour
     public void SpawnBullet(Transform t)
     {
         if (list.Count == 0) CreateBullets(4);
-        GameObject go = list.Pop();
+        GameObject go = bulletList.Pop();
         go.SetActive(true);
         go.transform.position = t.position;
         go.GetComponent<Bullet>().enabled = true;
