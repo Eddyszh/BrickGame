@@ -29,6 +29,10 @@ public class PlayerController : GridUpdateTool
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Border")) Debug.Log("Morí");
+        if (collision.CompareTag("Border"))
+        {
+            Debug.Log("Morí");
+            GameManager.Instance.GameState = States.GameOver;
+        }
     }
 }

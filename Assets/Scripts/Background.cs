@@ -9,6 +9,11 @@ public class Background : MonoBehaviour
 
     Vector3 startPosition;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         startPosition = transform.position;
@@ -17,6 +22,6 @@ public class Background : MonoBehaviour
     void Update()
     {
         float newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSize);
-        transform.position = startPosition + Vector3.back * newPosition;
+        transform.position = startPosition + Vector3.down * newPosition;
     }
 }

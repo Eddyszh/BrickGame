@@ -20,6 +20,7 @@ public class Asteroids : MonoBehaviour
         if (collision.GetComponent<PlayerController>()) 
         {
             Debug.Log("muere");
+            GameManager.Instance.GameState = States.GameOver;
         }
 
         if (collision.CompareTag("Boundary"))

@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Mine : GridUpdateTool
 {
-    void Start ()
-    {
-	}
-	
-	void Update ()
-    {
-		
-	}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
