@@ -4,25 +4,44 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    int randomDirection;
+    float randomDirection;
     public int speed;
+
+    public Vector2 movement;
+    public Vector2 movementWait;
+    public Vector2 wait;
+
+    Rigidbody2D rb;
 	// Use this for initialization
 	void Start ()
     {
+        rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Move());
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate ()
-    {		
-        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, 1f, 8f), 13, 0);
-	}
 
     IEnumerator Move()
     {
-        randomDirection = Random.Range(0, 2);
-        if (randomDirection == 0) transform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime;
-        if (randomDirection == 1) transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime;
-        yield return new WaitForSeconds(2);
+        /*yield return new WaitForSeconds(Random.Range(wait.x, wait.y));
+        while (true)
+        {
+            randomDirection = Random.Range(1, 8) * Mathf.Sign(transform.position.x);
+            yield return new WaitForSeconds(Random.Range(movementTime.x, movementTime.y));
+            randomDirection = 0;
+            yield return new WaitForSeconds(Random.Range(movementWait.x, movementWait.y));
+        }*/
+        yield return new WaitForSeconds(3);
+        if (movement == Vector2.right) movement = Vector2.left;
+        else movement = Vector2.right;
     }
+
+	void FixedUpdate ()
+    {
+        float amountToMove = speed * Time.fixedDeltaTime;
+        transform.Translate(movement * amountToMove);
+        //float movementt = Mathf.MoveTowards(rb.velocity.x, randomDirection, speed * Time.deltaTime);
+        //rb.velocity = new Vector2(movementt, 0);
+        //rb.position = new Vector2(Mathf.Clamp(rb.position.x, 1f, 8f), 13);
+	}
 }

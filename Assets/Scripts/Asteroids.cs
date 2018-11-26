@@ -5,6 +5,13 @@ using UnityEngine;
 public class Asteroids : MonoBehaviour
 {
     public int speed;
+    int randomSprite;
+
+    void Start()
+    {
+        randomSprite = Random.Range(0, 4);
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Spaceship_art/Asteroids/asteroid_" + randomSprite.ToString());
+    }
 
     void Update()
     {
