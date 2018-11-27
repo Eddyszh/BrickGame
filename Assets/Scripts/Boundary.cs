@@ -16,6 +16,9 @@ public class Boundary : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.GetComponent<Bullet>()) Debug.Log("Morí");
+        if (collision.GetComponent<Mine>()) Debug.Log("Moríx2");
+        if (collision.GetComponent<Asteroids>()) Debug.Log("Destruido");
+
     }
 }

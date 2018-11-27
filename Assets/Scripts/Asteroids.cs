@@ -24,7 +24,7 @@ public class Asteroids : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerController>()) 
+        if (collision.GetComponent<PlayerController>())
         {
             Debug.Log("muere");
             GameManager.Instance.GameState = States.GameOver;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : GridUpdateTool
 {
     public int speed;
+    public Animator anim;
 
     void Update ()
     {
@@ -16,6 +17,7 @@ public class Bullet : GridUpdateTool
             GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/spaceship_art/Blue/space_bomb_blue");
             GetComponent<Animator>().enabled = true;
             Grid2D.DeleteRow();
+            anim.SetBool("IsFull", true);
             enabled = false;
         }
 	}
@@ -43,12 +45,12 @@ public class Bullet : GridUpdateTool
         Grid2D.grid[(int)v.x, (int)v.y] = transform;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Boundary"))
         {
             //GameManager.Instance.GameState = States.GameOver;
             Debug.Log("Morí");
         }
-    }
+    }*/
 }

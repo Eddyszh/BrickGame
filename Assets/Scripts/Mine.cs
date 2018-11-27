@@ -5,13 +5,13 @@ using UnityEngine;
 public class Mine : GridUpdateTool
 {
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.GetComponent<PlayerController>())
         {
             Debug.Log("Murió");
         }
-    }
+    }*/
 
     public override bool isValidPosition()
     {
