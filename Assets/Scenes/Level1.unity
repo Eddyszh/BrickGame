@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1f729e792f55548951a72fbedaee37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  go: {fileID: 1498083454}
 --- !u!1 &165769515
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498083453}
   - component: {fileID: 1498083452}
+  - component: {fileID: 1498083454}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -778,6 +780,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1498083454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1498083451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7c7d06b87c91049af02af655f461cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1651296470 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95585303883125168, guid: 55f4f1ab20defcb4aa147ab3441da177,

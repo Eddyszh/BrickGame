@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Loader : MonoBehaviour
 {
-    bool level1 = false;
-    bool level2 = false;
-    bool level3 = false;
+    public static bool level1 = false;
+    public static bool level2 = false;
+    public static bool level3 = false;
 
     public void InitGame()
     {

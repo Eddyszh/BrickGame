@@ -9,16 +9,24 @@ public class Bullet : GridUpdateTool
 
     void Update ()
     {
-        transform.position += transform.TransformDirection(new Vector3(0, 1, 0) * speed);
-        if (isValidPosition()) GridUpdate();
-        else
+        if (Loader.level1)
         {
-            transform.position += new Vector3(0, -1, 0);
-            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/spaceship_art/Blue/space_bomb_blue");
-            GetComponent<Animator>().enabled = true;
-            Grid2D.DeleteRow();
-            anim.SetBool("IsFull", true);
-            enabled = false;
+            transform.position += transform.TransformDirection(new Vector3(0, 1, 0) * speed);
+            if (isValidPosition()) GridUpdate();
+            else
+            {
+                transform.position += new Vector3(0, -1, 0);
+                GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/spaceship_art/Blue/space_bomb_blue");
+                GetComponent<Animator>().enabled = true;
+                Grid2D.DeleteRow();
+                anim.SetBool("IsFull", true);
+                enabled = false;
+            }
+        }
+        Loader.level3 = true;
+        if (Loader.level3)
+        {
+            transform.position += transform.TransformDirection(new Vector3(0, 1, 0));
         }
 	}
 

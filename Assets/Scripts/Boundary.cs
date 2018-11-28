@@ -2,23 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boundary : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+public class Boundary : MonoBehaviour
+{
+    [SerializeField] GameOver go;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Bullet>()) Debug.Log("Morí");
-        if (collision.GetComponent<Mine>()) Debug.Log("Moríx2");
-        if (collision.GetComponent<Asteroids>()) Debug.Log("Destruido");
-
+        if (collision.GetComponent<Bullet>()) go.StopGame();
+        if (collision.GetComponent<Mine>()) go.StopGame();
+        if (collision.GetComponent<Asteroids>())
+        {
+            Score.isDetroying = true;
+            Destroy(collision.gameObject);
+        }
+        if (collision.GetComponent<BossBullet>()) Destroy(collision.gameObject);
     }
 }

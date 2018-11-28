@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class FirePoint : MonoBehaviour
 {
-    public GameObject bullet;
+    [SerializeField] GameObject bullet;
 
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1)
             Fire();
 	}
 
     void Fire()
     {
         //ObjectPool.Instance.SpawnBullet(transform);
-        GameObject go = Instantiate(bullet,transform.position, Quaternion.identity) as GameObject;
+        Instantiate(bullet,transform.position, Quaternion.identity);
     }
 }

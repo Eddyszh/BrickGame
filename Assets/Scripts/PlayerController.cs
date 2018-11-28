@@ -12,14 +12,14 @@ public class PlayerController : GridUpdateTool
 
     void Move()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) && Time.timeScale == 1)
         {
             transform.position += new Vector3(-1, 0, 0);
             if (isValidPosition()) GridUpdate();
             else transform.position += new Vector3(1, 0, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && Time.timeScale == 1)
         {
             transform.position += new Vector3(1, 0, 0);
             if (isValidPosition()) GridUpdate();
@@ -27,12 +27,12 @@ public class PlayerController : GridUpdateTool
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Border"))
         {
             Debug.Log("Morí");
             GameManager.Instance.GameState = States.GameOver;
         }
-    }
+    }*/
 }

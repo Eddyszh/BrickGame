@@ -15,4 +15,15 @@ public class GameOver : MonoBehaviour
     {
 		
 	}
+
+    public void StopGame()
+    {
+        StartCoroutine(Stop());
+    }
+
+    IEnumerator Stop()
+    {
+        yield return new WaitForSeconds(.8f);
+        Time.timeScale = 0f;
+    }
 }
