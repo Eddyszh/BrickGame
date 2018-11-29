@@ -11,7 +11,7 @@ public class SpawnMines : GridUpdateTool
     int randomPos;
     int index = 0;
     int randonMines;
-    int downSpeed = 5;
+    int downSpeed = 2;
 
     void Start ()
     {

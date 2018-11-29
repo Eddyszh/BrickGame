@@ -656,7 +656,7 @@ Prefab:
         type: 2}
       propertyPath: go
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1010876001}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55f4f1ab20defcb4aa147ab3441da177, type: 2}
   m_IsPrefabAsset: 0

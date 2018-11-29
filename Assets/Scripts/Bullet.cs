@@ -11,21 +11,23 @@ public class Bullet : GridUpdateTool
     {
         if (Loader.level1)
         {
-            transform.position += transform.TransformDirection(new Vector3(0, 1, 0) * speed);
+            transform.position += transform.TransformDirection(new Vector3(0, 1, 0));
             if (isValidPosition()) GridUpdate();
             else
             {
                 transform.position += new Vector3(0, -1, 0);
                 GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/spaceship_art/Blue/space_bomb_blue");
                 GetComponent<Animator>().enabled = true;
+                GetComponent<Collider2D>().enabled = true;
                 Grid2D.DeleteRow();
                 anim.SetBool("IsFull", true);
                 enabled = false;
             }
         }
-        Loader.level3 = true;
+
         if (Loader.level3)
         {
+            GetComponent<Collider2D>().enabled = true;
             transform.position += transform.TransformDirection(new Vector3(0, 1, 0));
         }
 	}

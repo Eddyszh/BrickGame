@@ -5,24 +5,34 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour
 {
     public static bool isDead = false;
-    public Animator anim;
+    [SerializeField] Animator anim;
     [SerializeField] GameOver go;
+
+    int lifes = 3;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Mine>()) Debug.Log("Moríi"); isDead = true;
-        if (collision.GetComponent<Asteroids>()) Debug.Log("Moríx7"); isDead = true;
-        if (collision.GetComponent<Bullet>()) Debug.Log("Moríx32"); isDead = true;
+        if (collision.GetComponent<Mine>()) isDead = true;
+        if (collision.GetComponent<Asteroids>()) isDead = true;
+        if (collision.GetComponent<Bullet>()) Debug.Log("Está colisionando");
         if (collision.GetComponent<BossBullet>()) isDead = true;
     }
 
     private void Update()
     {
-        if(isDead)
+        if(isDead && lifes > 0)
         {
+            lifes--;
             GetComponent<PlayerController>().enabled = false;
-            GetComponent<FirePoint>().enabled = false;
+            gameObject.transform.GetChild(1).GetComponent<FirePoint>().enabled = false;
             anim.SetBool("IsDead", isDead);
+            go.ResetGame();
+            Debug.Log(lifes);
+            isDead = false;
+        }
+
+        if (lifes == 0)
+        {
             go.StopGame();
         }
     }

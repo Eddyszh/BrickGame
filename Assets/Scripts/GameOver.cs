@@ -18,12 +18,24 @@ public class GameOver : MonoBehaviour
 
     public void StopGame()
     {
+        GameStatesSwitch.ChangeToGameOverState();
         StartCoroutine(Stop());
+    }
+
+    public void ResetGame()
+    {
+        StartCoroutine(Reset());
     }
 
     IEnumerator Stop()
     {
         yield return new WaitForSeconds(.8f);
         Time.timeScale = 0f;
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(.8f);
+        Loader.ResetLevel();
     }
 }
