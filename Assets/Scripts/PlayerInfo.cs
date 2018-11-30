@@ -14,7 +14,7 @@ public class PlayerInfo : MonoBehaviour
     {
         if (collision.GetComponent<Mine>()) isDead = true;
         if (collision.GetComponent<Asteroids>()) isDead = true;
-        if (collision.GetComponent<Bullet>()) Debug.Log("Está colisionando");
+        if (collision.GetComponent<Bullet>()) isDead = true;
         if (collision.GetComponent<BossBullet>()) isDead = true;
     }
 
@@ -22,17 +22,18 @@ public class PlayerInfo : MonoBehaviour
     {
         if(isDead && lifes > 0)
         {
+            if(Loader.level1) go.ResetGame();
             lifes--;
-            GetComponent<PlayerController>().enabled = false;
-            gameObject.transform.GetChild(1).GetComponent<FirePoint>().enabled = false;
             anim.SetBool("IsDead", isDead);
-            go.ResetGame();
             Debug.Log(lifes);
             isDead = false;
+            anim.SetBool("IsDead", isDead);
         }
 
         if (lifes == 0)
         {
+            GetComponent<PlayerController>().enabled = false;
+            gameObject.transform.GetChild(1).GetComponent<FirePoint>().enabled = false;
             go.StopGame();
         }
     }
