@@ -47,6 +47,7 @@ public class Grid2D : MonoBehaviour
                 RowUpAll(y - 1);
                 ++y;
                 Score.isDetroying = true;
+                AnimationController.isFull = true;
             }
         }
     }

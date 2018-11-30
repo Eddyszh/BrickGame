@@ -34,6 +34,6 @@ public class BossController : MonoBehaviour
             count = 0;
         }
 
-        if (transform.position.y == 2) transform.position = new Vector3(0, 15, 0);
+        if (transform.position.y == 3) transform.position = new Vector3(0, 15, 0);
     }
 }

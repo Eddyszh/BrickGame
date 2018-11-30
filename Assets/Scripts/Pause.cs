@@ -14,16 +14,22 @@ public class Pause : MonoBehaviour
 
     void Update ()
     {
-        if (Input.GetKey(KeyCode.Escape) && GameManager.Instance.GameState == States.Play) OnPause();
+        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.GameState == States.Play) OnPause();
 	}
 
     void OnPause()
     {
         if (Time.timeScale == 1.0f)
+        {
             Time.timeScale = 0f;
-        else Time.timeScale = 1.0f;
+            pauseImage.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+            pauseImage.SetActive(false);
+            options.ExitOptions();
+        }
 
-        options.EnterOptions();
-        options.ExitOptions();
     }
 }

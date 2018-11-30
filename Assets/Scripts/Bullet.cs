@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : GridUpdateTool
 {
     public int speed;
-    public Animator anim;
+    public static Animator anim;
 
     void Update ()
     {
@@ -20,7 +20,6 @@ public class Bullet : GridUpdateTool
                 GetComponent<Animator>().enabled = true;
                 GetComponent<Collider2D>().enabled = true;
                 Grid2D.DeleteRow();
-                anim.SetBool("IsFull", true);
                 enabled = false;
             }
         }
