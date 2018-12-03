@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
+
+    [SerializeField] AudioManager am;
 	// Use this for initialization
 	void Start ()
     {
@@ -13,11 +15,15 @@ public class GameOver : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
+        if (BossInfo.isBossDead)
+        {
+            am.ChangeMusic(4);
+        }
 	}
 
     public void StopGame()
     {
+        am.ChangeMusic(5);
         GameStatesSwitch.ChangeToGameOverState();
         StartCoroutine(Stop());
     }
@@ -29,7 +35,7 @@ public class GameOver : MonoBehaviour
 
     IEnumerator Stop()
     {
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(3f);
         Time.timeScale = 0f;
     }
 

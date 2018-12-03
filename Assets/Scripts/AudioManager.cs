@@ -7,15 +7,34 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] clips;
 
-	void Start ()
+    static AudioManager instance;
+
+    public static AudioManager Instance
     {
-        DontDestroyOnLoad(gameObject);
-	}
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<AudioManager>();
+
+                if (instance == null)
+                {
+                    GameObject go = new GameObject(typeof(AudioManager).ToString());
+                    go.AddComponent<AudioManager>();
+                }
+            }
+            return instance;
+        }
+    }
 
     public void ChangeMusic(int situation)
     {
         switch (situation)
         {
+            case 0:
+                audioSource.Stop();
+                audioSource.PlayOneShot(clips[0]);
+                break;
             case 1:
                 audioSource.Stop();
                 audioSource.PlayOneShot(clips[1]);
@@ -28,8 +47,13 @@ public class AudioManager : MonoBehaviour
                 audioSource.Stop();
                 audioSource.PlayOneShot(clips[3]);
                 break;
-            case 0:
-                audioSource.PlayOneShot(clips[0]);
+            case 4:
+                audioSource.Stop();
+                audioSource.PlayOneShot(clips[4]);
+                break;
+            case 5:
+                audioSource.Stop();
+                audioSource.PlayOneShot(clips[5]);
                 break;
             default:
                 break;

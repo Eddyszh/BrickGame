@@ -6,6 +6,8 @@ public class BossInfo : MonoBehaviour
 {
     int damage;
 
+    public static bool isBossDead = false;
+
 	void Start ()
     {
 		
@@ -16,7 +18,8 @@ public class BossInfo : MonoBehaviour
     {
         if (damage == 25)
         {
-            Destroy(gameObject);
+            isBossDead = true;
+            gameObject.SetActive(false);
         }
 	}
 
@@ -26,6 +29,7 @@ public class BossInfo : MonoBehaviour
         {
             damage++;
             Destroy(collision.gameObject);
+            Debug.Log(damage);
         }
     }
 }

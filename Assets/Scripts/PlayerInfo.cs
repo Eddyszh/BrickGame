@@ -10,6 +10,11 @@ public class PlayerInfo : MonoBehaviour
 
     int lifes = 3;
 
+    private void Start()
+    {
+        go = FindObjectOfType<GameOver>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Mine>()) isDead = true;
@@ -27,14 +32,15 @@ public class PlayerInfo : MonoBehaviour
             anim.SetBool("IsDead", isDead);
             Debug.Log(lifes);
             isDead = false;
-            anim.SetBool("IsDead", isDead);
         }
+        else if(isDead == false && lifes > 0) anim.SetBool("IsDead", isDead);
 
         if (lifes == 0)
         {
             GetComponent<PlayerController>().enabled = false;
             gameObject.transform.GetChild(1).GetComponent<FirePoint>().enabled = false;
             go.StopGame();
+            gameObject.SetActive(false);
         }
     }
 }
