@@ -5,7 +5,6 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioSource eventMusic;
     [SerializeField] AudioClip[] clips;
 
     public void ChangeLevelMusic(int level)
@@ -33,7 +32,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void EventMusic(int character)
+    /*public void EventMusic(int character)
     {
         switch (character)
         {
@@ -48,5 +47,5 @@ public class AudioManager : MonoBehaviour
             default:
                 break;
         }
-    }
+    }*/
 }

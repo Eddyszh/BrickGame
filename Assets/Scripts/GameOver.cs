@@ -45,6 +45,7 @@ public class GameOver : MonoBehaviour
     public void ResetGame()
     {
         Loader.ResetLevel();
+        Score.ResetScore();
     }
 
     public void ResetLevel1()

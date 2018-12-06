@@ -57,7 +57,7 @@ public class Leaderboard : MonoBehaviour
     {
         for (int x = 0; x < highScores.Length; x++)
         {
-            highScores[x].text = highScoreNames[x] + " ------------------- " + highScoreValues[x].ToString();
+            highScores[x].text = highScoreNames[x] + " : " + highScoreValues[x].ToString();
         }
     }
 }

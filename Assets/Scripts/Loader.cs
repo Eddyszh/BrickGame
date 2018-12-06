@@ -33,6 +33,7 @@ public class Loader : MonoBehaviour
         GameStatesSwitch.ChangeToPlayState();
         level1 = true;
         //am.ChangeLevelMusic(1);
+        Score.ResetScore();
         SceneManager.LoadScene(1);
     }
 
@@ -72,7 +73,7 @@ public class Loader : MonoBehaviour
             SceneManager.LoadScene(2);
             //am.ChangeLevelMusic(2);
         }
-        if(level2 == true && Score.score == 300)
+        if(level2 == true && Score.score >= 300)
         {
             level2 = false;
             level3 = true;

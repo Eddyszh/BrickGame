@@ -5,6 +5,7 @@ using UnityEngine;
 public class FirePoint : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
+    [SerializeField] SfxManager sm;
 
 	void Update ()
     {
@@ -16,5 +17,6 @@ public class FirePoint : MonoBehaviour
     {
         //ObjectPool.Instance.SpawnBullet(transform);
         Instantiate(bullet,transform.position, Quaternion.identity);
+        sm.PlaySFX(0);
     }
 }

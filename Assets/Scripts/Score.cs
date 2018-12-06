@@ -20,7 +20,7 @@ public class Score : MonoBehaviour
     {
         score = PlayerPrefs.GetInt("score", 0);
         scoreText.text = "Score: " + score.ToString();
-        highScoreText.text = "HighScore: " + PlayerPrefs.GetInt("HighScore", 0);
+        highScoreText.text = "HighScore: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 	}
 	
 	void Update ()

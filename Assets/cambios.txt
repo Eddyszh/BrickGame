@@ -1,0 +1,7 @@
+cambiar imagen de pausa
+implementar indicadores de vidas restantes
+implementar mas enemigos
+agregar escenario al nivel 2
+implementar sonidos al disparar
+implemetar animaciones en el nivel 1 al destruir una fila y al jefe en el nivel 3
+aumentar la dificultad del jefe y del juego en general

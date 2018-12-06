@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
     public static bool isDead = false;
     [SerializeField] Animator anim;
     [SerializeField] GameOver go;
+    [SerializeField] Image[] lifeImages;
+    [SerializeField] SfxManager sm;
 
     public static int lives = 3;
 
     private void Start()
     {
         go = FindObjectOfType<GameOver>();
+        if(lives < 3) lifeImages[2].gameObject.SetActive(false);
+        if(lives < 2) lifeImages[1].gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +41,8 @@ public class PlayerInfo : MonoBehaviour
         if(isDead && lives >= 1)
         {
             lives--;
+            sm.PlaySFX(1);
+            lifeImages[lives].gameObject.SetActive(false);
             anim.SetBool("IsDead", isDead);
             Debug.Log(lives);
             isDead = false;
