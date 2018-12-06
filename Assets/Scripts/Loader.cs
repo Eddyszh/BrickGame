@@ -11,39 +11,19 @@ public enum ActualScene
     Level3
 }
 
-
 public class Loader : MonoBehaviour
 {
     public ActualScene a_scene;
+    public static bool main = false;
     public static bool level1 = false;
     public static bool level2 = false;
     public static bool level3 = false;
 
     [SerializeField] AudioManager am;
 
-    static Loader instance;
-
-    public static Loader Instance
+    private void Start()
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<Loader>();
-
-                if (instance == null)
-                {
-                    GameObject go = new GameObject(typeof(Loader).ToString());
-                    go.AddComponent<Loader>();
-                }
-            }
-            return instance;
-        }
-    }
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         //sceneName = SceneManager.GetActiveScene().name;
         LoadMusicScene(a_scene);
     }
@@ -51,20 +31,14 @@ public class Loader : MonoBehaviour
     public void InitGame()
     {
         GameStatesSwitch.ChangeToPlayState();
-        //level1 = true;
+        level1 = true;
+        //am.ChangeLevelMusic(1);
         SceneManager.LoadScene(1);
     }
 
     void Update()
     {
         ChangeScene();
-
-        /*if (sceneName == )
-        {
-            GameStatesSwitch.ChangeToMainMenuState();
-            am.ChangeMusic(0);
-        }
-        */
     }
 
     public void LoadMusicScene(ActualScene actual)
@@ -72,18 +46,16 @@ public class Loader : MonoBehaviour
         switch (actual)
         {
             case ActualScene.MainMenu:
-                GameStatesSwitch.ChangeToMainMenuState();
-                am.ChangeMusic(0);
+                am.ChangeLevelMusic(0);
                 break;
             case ActualScene.Level1:
-                level1 = true;
-                am.ChangeMusic(1);
+                am.ChangeLevelMusic(1);
                 break;
             case ActualScene.Level2:
-                am.ChangeMusic(2);
+                am.ChangeLevelMusic(2);
                 break;
             case ActualScene.Level3:
-                am.ChangeMusic(3);
+                am.ChangeLevelMusic(3);
                 break;
             default:
                 break;
@@ -98,24 +70,32 @@ public class Loader : MonoBehaviour
             level1 = false;
             level2 = true;
             SceneManager.LoadScene(2);
+            //am.ChangeLevelMusic(2);
         }
         if(level2 == true && Score.score == 300)
         {
             level2 = false;
             level3 = true;
             SceneManager.LoadScene(3);
+            //am.ChangeLevelMusic(3);
         }
     }
 
     public void MainMenu()
     {
+        GameStatesSwitch.ChangeToMainMenuState();
         SceneManager.LoadScene(0);
-        am.ChangeMusic(0);
+        level1 = false;
+        level2 = false;
+        level3 = false;
+        Time.timeScale = 1.0f;
     }
 
     public static void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1.0f;
+        PlayerInfo.lives = 3;
     }
 
     public void Exit()

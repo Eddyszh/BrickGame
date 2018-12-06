@@ -4,44 +4,65 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-
     [SerializeField] AudioManager am;
-	// Use this for initialization
+
+    [SerializeField] GameObject victoryImage;
+    [SerializeField] GameObject defeatImage;
+    [SerializeField] GameObject leaderboardImage;
+
 	void Start ()
     {
-		
+        victoryImage.SetActive(false);
+        defeatImage.SetActive(false);
+        leaderboardImage.SetActive(false);
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
-        if (BossInfo.isBossDead)
-        {
-            am.ChangeMusic(4);
-        }
+        Victory();
 	}
 
-    public void StopGame()
+    public void Defeat()
     {
-        am.ChangeMusic(5);
+        defeatImage.SetActive(true);
+        leaderboardImage.SetActive(true);
+        //am.EventMusic(1);
         GameStatesSwitch.ChangeToGameOverState();
         StartCoroutine(Stop());
     }
 
+    public void Victory()
+    {
+        if (BossInfo.isBossDead)
+        {
+            victoryImage.SetActive(true);
+            leaderboardImage.SetActive(true);
+            GameStatesSwitch.ChangeToGameOverState();
+            //am.EventMusic(0);
+        }
+    }
+
     public void ResetGame()
     {
-        StartCoroutine(Reset());
+        Loader.ResetLevel();
+    }
+
+    public void ResetLevel1()
+    {
+        for (int x = 0; x < 10; x++)
+        {
+            for (int y = 1; y < 16; y++)
+            {
+                if (Grid2D.grid[x, y] == null) continue;
+                Destroy(Grid2D.grid[x, y].gameObject);
+                Grid2D.grid[x, y] = null;
+            }
+        }
     }
 
     IEnumerator Stop()
     {
-        yield return new WaitForSeconds(3f);
-        Time.timeScale = 0f;
-    }
-
-    IEnumerator Reset()
-    {
         yield return new WaitForSeconds(.8f);
-        Loader.ResetLevel();
+        Time.timeScale = 0f;
     }
 }

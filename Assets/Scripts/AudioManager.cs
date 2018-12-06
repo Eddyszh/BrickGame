@@ -5,31 +5,12 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource eventMusic;
     [SerializeField] AudioClip[] clips;
 
-    static AudioManager instance;
-
-    public static AudioManager Instance
+    public void ChangeLevelMusic(int level)
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<AudioManager>();
-
-                if (instance == null)
-                {
-                    GameObject go = new GameObject(typeof(AudioManager).ToString());
-                    go.AddComponent<AudioManager>();
-                }
-            }
-            return instance;
-        }
-    }
-
-    public void ChangeMusic(int situation)
-    {
-        switch (situation)
+        switch (level)
         {
             case 0:
                 audioSource.Stop();
@@ -47,13 +28,22 @@ public class AudioManager : MonoBehaviour
                 audioSource.Stop();
                 audioSource.PlayOneShot(clips[3]);
                 break;
-            case 4:
-                audioSource.Stop();
-                audioSource.PlayOneShot(clips[4]);
+            default:
                 break;
-            case 5:
+        }
+    }
+
+    public void EventMusic(int character)
+    {
+        switch (character)
+        {
+            case 0:
                 audioSource.Stop();
-                audioSource.PlayOneShot(clips[5]);
+                eventMusic.PlayOneShot(clips[4]);
+                break;
+            case 1:
+                audioSource.Stop();
+                eventMusic.PlayOneShot(clips[5]);
                 break;
             default:
                 break;

@@ -11,7 +11,7 @@ public class Background : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     void Start()

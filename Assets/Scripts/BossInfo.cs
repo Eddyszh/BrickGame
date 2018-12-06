@@ -27,6 +27,7 @@ public class BossInfo : MonoBehaviour
     {
         if (collision.GetComponent<Bullet>())
         {
+            Score.AddScore(10);
             damage++;
             Destroy(collision.gameObject);
             Debug.Log(damage);

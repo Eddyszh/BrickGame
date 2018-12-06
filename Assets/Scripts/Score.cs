@@ -5,35 +5,64 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    public Text scoreText;
+    [SerializeField] Text scoreText;
+    [SerializeField] Text highScoreText;
+
+    [SerializeField] Leaderboard lb;
+    [SerializeField] InputField playerName;
+    [SerializeField] Button acceptName;
+
     public static int score;
     int count;
     float timeForBonus;
-    public static bool isDetroying;
 
 	void Start ()
     {
-        scoreText.text = "Score: 0";
+        score = PlayerPrefs.GetInt("score", 0);
+        scoreText.text = "Score: " + score.ToString();
+        highScoreText.text = "HighScore: " + PlayerPrefs.GetInt("HighScore", 0);
 	}
 	
 	void Update ()
     {
         ScoreUpdate();
-        scoreText.text = "Score: " + score.ToString();
-        Debug.Log(timeForBonus);
 	}
 
     public void ScoreUpdate()
     {
-        if(isDetroying)
-        {
-            score += 10;
-            count++;
-            Bonus();
-            //isDetroying = false;
-        }
-        //return score;
+        scoreText.text = "Score: " + score.ToString();
+        HighScore();
+        PlayerPrefs.SetInt("score", score);
     }
+
+    public void HighScore()
+    {
+        int newScore = score;
+
+        if (newScore > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", newScore);
+            highScoreText.text = "HighScore: " + newScore.ToString();
+        }
+    }
+
+    public void SavePlayerName()
+    {
+        lb.VerifyScores(score, playerName.text);
+        playerName.gameObject.SetActive(false);
+        acceptName.gameObject.SetActive(false);
+    }
+
+    public static void AddScore(int newValue)
+    {
+        score += newValue;
+    }
+
+    public static void ResetScore()
+    {
+        PlayerPrefs.DeleteKey("score");
+    }
+
 
     void Bonus()
     {
@@ -77,7 +106,5 @@ public class Score : MonoBehaviour
         //yield return new WaitForSeconds(2f);
         // count = 0;
         //StopCoroutine(Bonus());
-        isDetroying = false;
-        Debug.Log(count);
     }
 }

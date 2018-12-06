@@ -8,7 +8,7 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] GameOver go;
 
-    int lifes = 3;
+    public static int lives = 3;
 
     private void Start()
     {
@@ -25,22 +25,22 @@ public class PlayerInfo : MonoBehaviour
 
     private void Update()
     {
-        if(isDead && lifes > 0)
-        {
-            if(Loader.level1) go.ResetGame();
-            lifes--;
-            anim.SetBool("IsDead", isDead);
-            Debug.Log(lifes);
-            isDead = false;
-        }
-        else if(isDead == false && lifes > 0) anim.SetBool("IsDead", isDead);
-
-        if (lifes == 0)
+        if (lives <= 0)
         {
             GetComponent<PlayerController>().enabled = false;
-            gameObject.transform.GetChild(1).GetComponent<FirePoint>().enabled = false;
-            go.StopGame();
-            gameObject.SetActive(false);
+            gameObject.transform.GetChild(0).GetComponent<FirePoint>().enabled = false;
+            go.Defeat();
+            //gameObject.SetActive(false);
         }
+
+        if(isDead && lives >= 1)
+        {
+            lives--;
+            anim.SetBool("IsDead", isDead);
+            Debug.Log(lives);
+            isDead = false;
+            if(Loader.level1 && lives > 0) go.ResetLevel1();
+        }
+        else if(isDead == false) anim.SetBool("IsDead", isDead);
     }
 }

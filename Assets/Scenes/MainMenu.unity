@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1315,6 +1315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2eda6141faa5643ab28aa7d5549eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a_scene: 0
   am: {fileID: 1585357840}
 --- !u!114 &932299255
 MonoBehaviour:
@@ -1334,12 +1335,14 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 932299251}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff7c7d06b87c91049af02af655f461cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 1585357840}
+  victoryImage: {fileID: 0}
+  defeatImage: {fileID: 0}
 --- !u!1 &1250619586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1585357841}
+  eventMusic: {fileID: 0}
   clips:
   - {fileID: 8300000, guid: 5d784fcd50c73244cbe99bcab532385b, type: 3}
   - {fileID: 8300000, guid: 4d8a5423202abcb43a4c485eed3e9017, type: 3}

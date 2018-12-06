@@ -14,7 +14,7 @@ public class Pause : MonoBehaviour
 
     void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.GameState == States.Play) OnPause();
+        if (Input.GetKeyDown(KeyCode.Escape) ) OnPause();
 	}
 
     void OnPause()
