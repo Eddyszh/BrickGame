@@ -13,6 +13,8 @@ public class SpawnMines : GridUpdateTool
     int randonMines;
     int downSpeed = 2;
 
+    public static int count = 0;
+
     void Start ()
     {
         for (int i = 0; i < value.Length; i++)
@@ -24,9 +26,10 @@ public class SpawnMines : GridUpdateTool
 
     IEnumerator SpawnNewRow()
     {
-        if (Score.score >= 300 && Score.score < 500) downSpeed = 4;
+        /*if (Score.score >= 300 && Score.score < 500) downSpeed = 4;
         if (Score.score >= 500 && Score.score < 700) downSpeed = 3;
-        if (Score.score >= 700) downSpeed = 2;
+        if (Score.score >= 700) downSpeed = 2;*/
+        
         randonMines = Random.Range(3, 8);
         for (int x = 0; x < randonMines; x++)
         {
@@ -40,6 +43,7 @@ public class SpawnMines : GridUpdateTool
         isGettingDown = true;
         Down();
         RandomValue();
+        count++;
     }
 
     void RandomValue()

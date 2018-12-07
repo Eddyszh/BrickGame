@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Options : MonoBehaviour
 {
     [SerializeField] GameObject optionsImage;
+    [SerializeField] GameObject creditsImage;
     [SerializeField] Slider slider;
     [SerializeField] Slider sfx_Slider;
     
@@ -13,6 +14,7 @@ public class Options : MonoBehaviour
 	void Start ()
     {
         optionsImage.SetActive(false);
+        creditsImage.SetActive(false);
         slider.value = PlayerPrefs.GetFloat("volume", 1);
         sfx_Slider.value = PlayerPrefs.GetFloat("sfxVolume", 1);
 	}
@@ -31,5 +33,15 @@ public class Options : MonoBehaviour
     {
         PlayerPrefs.SetFloat("volume", slider.value);
         PlayerPrefs.SetFloat("sfxVolume", sfx_Slider.value);
+    }
+
+    public void EnterCredits()
+    {
+        creditsImage.SetActive(true);
+    }
+
+    public void ExitCredits()
+    {
+        creditsImage.SetActive(false);
     }
 }

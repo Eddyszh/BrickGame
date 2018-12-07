@@ -66,14 +66,15 @@ public class Loader : MonoBehaviour
 
     void ChangeScene()
     {
-        if (level1 == true && Score.score == 150)
+        if (level1 == true && Score.score == 350)
         {
             level1 = false;
             level2 = true;
             SceneManager.LoadScene(2);
             //am.ChangeLevelMusic(2);
         }
-        if(level2 == true && Score.score >= 300)
+
+        if(level2 == true && Input.GetKeyDown(KeyCode.W) && ChargeEnergySlider.isFullPower == true)
         {
             level2 = false;
             level3 = true;
